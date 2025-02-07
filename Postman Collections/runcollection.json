@@ -1498,12 +1498,6 @@
 									"script": {
 										"id": "7757b685-360e-48b1-b553-75725fc89699",
 										"exec": [
-											"let roomNumber = Math.floor(10000 + Math.random() * 90000); \r",
-											"pm.globals.set(\"new_room\", `f${roomNumber}`);\r",
-											"\r",
-											"let responseData = pm.response.json();\r",
-											"pm.environment.set(\"room_id\", responseData.id);\r",
-											"\r",
 											"pm.test(\"Status code is 201\", function () {\r",
 											"    pm.response.to.have.status(201);\r",
 											"});\r",
@@ -1528,8 +1522,15 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "cee72966-2b23-4553-a893-9c78c345859b",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											"let roomNumber = Math.floor(10000 + Math.random() * 90000); \r",
+											"pm.globals.set(\"new_room\", `f${roomNumber}`);\r",
+											"\r",
+											"let responseData = pm.response.json();\r",
+											"pm.environment.set(\"room_id\", responseData.id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -1757,12 +1758,6 @@
 									"script": {
 										"id": "6c8ce9a5-7f43-4aaf-8149-93aa9f07bc63",
 										"exec": [
-											"let responseData = pm.response.json();\r",
-											"pm.environment.set(\"bed_id\", responseData.id);\r",
-											"\r",
-											"\r",
-											"let shortId = Math.floor(100 + Math.random() * 900);\r",
-											"pm.globals.set(\"bed_name\", `bed${shortId}`);\r",
 											"\r",
 											"pm.test(\"Status code is 201\", function () {\r",
 											"    pm.response.to.have.status(201);\r",
@@ -1784,8 +1779,15 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "36442348-fe2e-489f-b35f-28dce913338e",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											"let responseData = pm.response.json();\r",
+											"pm.environment.set(\"bed_id\", responseData.id);\r",
+											"\r",
+											"let shortId = Math.floor(100 + Math.random() * 900);\r",
+											"pm.globals.set(\"bed_name\", `bed${shortId}`);"
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -2055,69 +2057,6 @@
 					"name": "Delete",
 					"item": [
 						{
-							"name": "%% add bed to cart Copy",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "e64423ce-f933-4df9-9bcf-48d2e03162a5",
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "68178d8c-6699-43c0-b7c8-71db094cf8de",
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "44b2e50d-2b1b-4006-b05a-f89478720ee5",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{accessToken}}"
-									}
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "Authorization",
-										"value": "{{accessToken}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"entryDate\": \"2025-02-10\",\r\n  \"departureDate\": \"2025-02-17\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURI}}cart/bed/{{bed_id}}"
-							},
-							"response": []
-						},
-						{
 							"name": "%%%clear cart by id",
 							"id": "d43921bf-bff3-4321-9842-241f7a9badb7",
 							"protocolProfileBehavior": {
@@ -2133,75 +2072,6 @@
 								"method": "DELETE",
 								"header": [],
 								"url": "{{BaseURI}}cart/remove_bed/{{bed_id}}"
-							},
-							"response": []
-						},
-						{
-							"name": "%% create new bed Copy",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "6c8ce9a5-7f43-4aaf-8149-93aa9f07bc63",
-										"exec": [
-											"let responseData = pm.response.json();\r",
-											"pm.environment.set(\"bed_id\", responseData.id);\r",
-											"\r",
-											"\r",
-											"let shortId = Math.floor(100 + Math.random() * 900);\r",
-											"pm.globals.set(\"bed_name\", `bed${shortId}`);\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "36442348-fe2e-489f-b35f-28dce913338e",
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "52b1130a-a939-45fd-87aa-acdf3bd2d029",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{accessToken}}"
-									}
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "Authorization",
-										"value": "{{accessToken}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"number\": \"{{bed_name}}\",\r\n  \"type\": \"solo\",\r\n  \"price\": 20,\r\n  \"roomId\": {{room_id}}\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURI}}beds"
 							},
 							"response": []
 						},
