@@ -1648,8 +1648,11 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "c1dd4c87-bc47-4311-9699-dd6ff46d0a52",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -1666,7 +1669,7 @@
 								},
 								"method": "GET",
 								"header": [],
-								"url": "{{BaseURI}}rooms/{{room_id}}/total_price"
+								"url": "{{BaseURI}}rooms/null/total_price"
 							},
 							"response": []
 						}
