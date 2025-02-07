@@ -1571,56 +1571,6 @@
 							"response": []
 						},
 						{
-							"name": "Get room by id",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "0071b338-312c-45af-8167-31de9d993fa2",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"pm.test(\"Response time is less than 300ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
-											"});\r",
-											"\r",
-											"pm.test(\"Content-Type is present\", function () {\r",
-											"    pm.response.to.have.header(\"Content-Type\");\r",
-											"}); "
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "15951815-9fd2-4955-a69f-6e19c99e9b70",
-										"exec": [],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "0ebbfdc4-1e5b-4a89-bb17-8236c47005b3",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{accessToken}}"
-									}
-								},
-								"method": "GET",
-								"header": [],
-								"url": "{{BaseURI}}rooms/{{room_id}}"
-							},
-							"response": []
-						},
-						{
 							"name": "get rooms total price",
 							"event": [
 								{
@@ -1669,7 +1619,57 @@
 								},
 								"method": "GET",
 								"header": [],
-								"url": "{{BaseURI}}rooms/null/total_price"
+								"url": "{{BaseURI}}rooms/{{room_id}}/total_price"
+							},
+							"response": []
+						},
+						{
+							"name": "Get room by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0071b338-312c-45af-8167-31de9d993fa2",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"}); "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "15951815-9fd2-4955-a69f-6e19c99e9b70",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "0ebbfdc4-1e5b-4a89-bb17-8236c47005b3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURI}}rooms/{{room_id}}"
 							},
 							"response": []
 						}
