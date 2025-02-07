@@ -1498,6 +1498,12 @@
 									"script": {
 										"id": "7757b685-360e-48b1-b553-75725fc89699",
 										"exec": [
+											"let roomNumber = Math.floor(10000 + Math.random() * 90000); \r",
+											"pm.globals.set(\"new_room\", `f${roomNumber}`);\r",
+											"\r",
+											"let responseData = pm.response.json();\r",
+											"pm.environment.set(\"room_id\", responseData.id);\r",
+											"\r",
 											"pm.test(\"Status code is 201\", function () {\r",
 											"    pm.response.to.have.status(201);\r",
 											"});\r",
@@ -1523,11 +1529,7 @@
 									"script": {
 										"id": "cee72966-2b23-4553-a893-9c78c345859b",
 										"exec": [
-											"let roomNumber = Math.floor(10000 + Math.random() * 90000); \r",
-											"pm.globals.set(\"new_room\", `f${roomNumber}`);\r",
-											"\r",
-											"let responseData = pm.response.json();\r",
-											"pm.environment.set(\"room_id\", responseData.id);"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
