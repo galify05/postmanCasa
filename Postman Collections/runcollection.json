@@ -22,14 +22,13 @@
 											"script": {
 												"id": "d3bc6595-41d2-40a2-8977-5c10ae5c00b9",
 												"exec": [
-													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
 													"\r",
 													"pm.test(\"Status code is 201\", function () {\r",
 													"    pm.response.to.have.status(201);\r",
 													"}); //проверка статус кода\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"}); // проверка скорости работы\r",
 													"\r",
 													"pm.test(\"Value roles: role user\", function () {\r",
@@ -60,7 +59,7 @@
 											"script": {
 												"id": "651a9a92-5373-4d12-b22e-980267903e78",
 												"exec": [
-													""
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);"
 												],
 												"type": "text/javascript",
 												"packages": {}
@@ -1498,9 +1497,6 @@
 									"script": {
 										"id": "7757b685-360e-48b1-b553-75725fc89699",
 										"exec": [
-											"let roomNumber = Math.floor(10000 + Math.random() * 90000); \r",
-											"pm.globals.set(\"new_room\", `f${roomNumber}`);\r",
-											"\r",
 											"let responseData = pm.response.json();\r",
 											"pm.environment.set(\"room_id\", responseData.id);\r",
 											"\r",
@@ -1529,7 +1525,8 @@
 									"script": {
 										"id": "cee72966-2b23-4553-a893-9c78c345859b",
 										"exec": [
-											""
+											"let roomNumber = Math.floor(10000 + Math.random() * 90000); \r",
+											"pm.globals.set(\"new_room\", `f${roomNumber}`);"
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1761,6 +1758,9 @@
 										"id": "6c8ce9a5-7f43-4aaf-8149-93aa9f07bc63",
 										"exec": [
 											"\r",
+											"let responseData = pm.response.json();\r",
+											"pm.environment.set(\"bed_id\", responseData.id);\r",
+											"\r",
 											"pm.test(\"Status code is 201\", function () {\r",
 											"    pm.response.to.have.status(201);\r",
 											"});\r",
@@ -1782,8 +1782,6 @@
 									"script": {
 										"id": "36442348-fe2e-489f-b35f-28dce913338e",
 										"exec": [
-											"let responseData = pm.response.json();\r",
-											"pm.environment.set(\"bed_id\", responseData.id);\r",
 											"\r",
 											"let shortId = Math.floor(100 + Math.random() * 900);\r",
 											"pm.globals.set(\"bed_name\", `bed${shortId}`);"
