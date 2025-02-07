@@ -1,0 +1,2362 @@
+{
+	"info": {
+		"_postman_id": "d0782f3c-7a51-4e42-81cd-d024f4b42bcc",
+		"name": "CasaFlamingo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Registration",
+					"item": [
+						{
+							"name": "Positive",
+							"item": [
+								{
+									"name": "RegisterUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d3bc6595-41d2-40a2-8977-5c10ae5c00b9",
+												"exec": [
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
+													"\r",
+													"pm.test(\"Status code is 201\", function () {\r",
+													"    pm.response.to.have.status(201);\r",
+													"}); //проверка статус кода\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"}); // проверка скорости работы\r",
+													"\r",
+													"pm.test(\"Value roles: role user\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.roles[0].name).to.eql(\"ROLE_USER\");\r",
+													"});\r",
+													"// проверка значения роли в массиве (точное совпадение)\r",
+													"// response body json value check\r",
+													"\r",
+													"pm.test(\"Value roles: role user\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"ROLE_USER\");\r",
+													"}); // проверка значения роли в общем и целом\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"}); //проверка, что прописан контент тайп в бэке\r",
+													"\r",
+													"pm.test(\"Status code name has string: Created\", function () {\r",
+													"    pm.response.to.have.status(\"Created\");\r",
+													"}); // проверка что статус 201 имеет стринг создано"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "651a9a92-5373-4d12-b22e-980267903e78",
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "6ea394e2-bee4-4f4c-901f-431b3e6b26fb",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Biba\",\r\n    \"lastName\": \"Boba\",\r\n  \"userEmail\": \"{{generated_email}}\",\r\n  \"phoneNumber\": \"1234567899\",\r\n  \"password\": \"Cobra123!\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								}
+							],
+							"id": "a6ea5dd8-23b9-4df2-9628-e6a236ea8170"
+						},
+						{
+							"name": "Negative",
+							"item": [
+								{
+									"name": "RegisterUser alredy exist",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "cebaaac0-0476-4227-a6c5-b2d94b9c116e",
+												"exec": [
+													"pm.test(\"Status code is 409\", function () {\r",
+													"    pm.response.to.have.status(409);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"\r",
+													"pm.test(\"Value message: already exist\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"already exist\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "89b02fe0-cea3-4e4a-bd9e-0daf4957ea13",
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "61fe369f-e2e2-4973-b210-99ff75d19365",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Biba\",\r\n    \"lastName\": \"Boba\",\r\n  \"userEmail\": \"test@biba.ua\",\r\n  \"phoneNumber\": \"1234567899\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "without email",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "8b75948a-4aa2-4394-a63e-e8c312b2e1a7",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Value message: empty email\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"must not be blank\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "c3c8c3c9-bd73-415f-8722-2c1fc9e038aa",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "e7c77f4b-1428-4394-b469-c577ad6da8a1",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Biba\",\r\n    \"lastName\": \"Boba\",\r\n  \"userEmail\": \"\",\r\n  \"phoneNumber\": \"1234567899\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "without password",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "1b67a1df-ac15-4928-94fc-a90c2cf2482c",
+												"exec": [
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
+													"\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"\r",
+													"pm.test(\"Value message: empty pass\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"must not be blank\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "5210ee4f-19ec-4e03-8e96-ea4ebb9546c8",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "8170ae7c-2f8f-4f96-8a9b-ea833e0ace1c",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Biba\",\r\n    \"lastName\": \"Boba\",\r\n  \"userEmail\": \"{{generated_email}}\",\r\n  \"phoneNumber\": \"1234567899\",\r\n  \"password\": \"\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "without firstname",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "1fdd70ea-2f7a-4a9d-88e9-8f484bf53dc2",
+												"exec": [
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
+													"\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"\r",
+													"pm.test(\"Value message: empty firstName \", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"must not be blank\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "a25765f3-51e1-4ae5-a170-d8b0e70887af",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "12a063a1-a297-4fce-b5a8-661cea3d384b",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"      \",\r\n    \"lastName\": \"Boba\",\r\n  \"userEmail\": \"{{generated_email}}\",\r\n  \"phoneNumber\": \"1234567899\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "without lastname",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "679d806a-b79b-4395-a8de-00ffe5508cc8",
+												"exec": [
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
+													"\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"\r",
+													"pm.test(\"Value message: empty lastname\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"must not be blank\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "8c7810a6-3aa9-455b-8057-22c066a802e6",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "794cd705-5a3c-4528-82ab-b2131dd8a02d",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Biba\",\r\n    \"lastName\": \"\",\r\n  \"userEmail\": \"{{generated_email}}\",\r\n  \"phoneNumber\": \"1234567899\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "without phone",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "87258f44-65d2-41ac-965c-97bd79a882e3",
+												"exec": [
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
+													"\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"\r",
+													"pm.test(\"Value message: empty phone\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"must not be blank\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "20309b5e-0537-4e58-84ae-92a148bd14da",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "58f60586-d8da-427e-9f35-02f44ec12350",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Biba\",\r\n    \"lastName\": \"Boba\",\r\n  \"userEmail\": \"{{generated_email}}\",\r\n  \"phoneNumber\": \"\",\r\n  \"password\": \"Cobra123!\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "%%% witn !!!!!!!!!!! lastName",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "249d4ff5-68e1-4c75-a348-aae90946e040",
+												"exec": [
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
+													"\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"\r",
+													"pm.test(\"Value message: lastName invalid\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"invalid\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "151d445c-bbe7-4899-8276-4b175e956a60",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "29dd281a-228d-463c-b879-d5178ab12859",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Biba\",\r\n    \"lastName\": \"!!!!!!!!!!!\",\r\n  \"userEmail\": \"{{generated_email}}\",\r\n  \"phoneNumber\": \"1234567899\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "%%% witn !!!!!!!!!!! firstName",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a49c40e3-485d-4529-bc00-2fc334593c9b",
+												"exec": [
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
+													"\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Value message: firstName invalid\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"invalid\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "cd68384f-e128-439b-b63c-d3e91fa26b02",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "3a0863fc-7709-4a28-a055-dc9978e92ab9",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"!!!!!!!!!!!\",\r\n    \"lastName\": \"Boba\",\r\n  \"userEmail\": \"{{generated_email}}\",\r\n  \"phoneNumber\": \"12345678\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "%%% with invalid phone",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2494d35c-8346-4d2c-a2af-00ddf399bf95",
+												"exec": [
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
+													"\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Value message: phone invalid\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"invalid\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "1def6cf7-2f15-420d-9550-60357078ee9c",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "dba1af5e-5980-4f64-8d2e-5b922fa761d8",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Biba\",\r\n    \"lastName\": \"Boba\",\r\n  \"userEmail\": \"{{generated_email}}\",\r\n  \"phoneNumber\": \"бдэбдэ\",\r\n  \"password\": \"Cobra123!\"\r\n}\r\n\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "with a password shorter than 8 characters",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d72b318d-fd33-4f5f-9de5-05f06ecb8822",
+												"exec": [
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
+													"\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Value message: phone invalid\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"contains at least 8 characters\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "6f6ac0c9-09ca-4dd6-977f-e907ef87ffaa",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "30d3b477-1269-4592-9f2e-cc1eb0b6d79c",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Biba\",\r\n    \"lastName\": \"Boba\",\r\n  \"userEmail\": \"{{generated_email}}\",\r\n  \"phoneNumber\": \"1234567899\",\r\n  \"password\": \"Aa12!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "%%% with an incorrectly formatted email",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "692f68c3-2f26-4ee1-8c75-9016de92bd35",
+												"exec": [
+													"pm.globals.set(\"generated_invalid_email\", `test${Date.now()}@gmailcom`);\r",
+													"\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Value message: email invalid\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "9a4b05f4-d8ae-486d-851b-5cb469ae82f4",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "afcc48ec-be8e-4862-9abc-c9d6e290619e",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Biba\",\r\n    \"lastName\": \"Boba\",\r\n  \"userEmail\": \"{{generated_invalid_email}}\",\r\n  \"phoneNumber\": \"1234567899\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "%%% with a name that is too long",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "35d4fd86-96de-48ad-a624-e0062b1c8bf8",
+												"exec": [
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
+													"\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Value message: name invalid\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"invalid\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4a085c25-88d8-4b3d-bb95-d4594636555c",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "8d7c76aa-102e-45f6-8aec-ac6f0c2ac500",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\r\n    \"lastName\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\r\n  \"userEmail\": \"{{generated_email}}\",\r\n  \"phoneNumber\": \"1234567899\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "with a name that is too long",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "137b7b1e-0cec-45bd-b14c-ff3fd15ba18e",
+												"exec": [
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
+													"\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Value message: name invalid\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"invalid\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "dfd48bdb-24d7-417c-8a2c-74f65355a254",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "70a34fb9-0a2f-4020-9f11-237ce4f1d82d",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\r\n    \"lastName\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\r\n  \"userEmail\": \"{{generated_email}}\",\r\n  \"phoneNumber\": \"1234567899\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								},
+								{
+									"name": "%%% with a phone that is short",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "44700df2-b2c7-4e69-81e9-c868dd018694",
+												"exec": [
+													"pm.globals.set(\"generated_email\", `test${Date.now()}@gmail.com`);\r",
+													"\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Value message: short phone\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"invalid\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "c2ee37b5-f6a5-449b-9bac-a06fda06fd2f",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "45309c9e-7af3-468b-ab37-fdb9cef94d13",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Biba\",\r\n    \"lastName\": \"Boba\",\r\n  \"userEmail\": \"{{generated_email}}\",\r\n  \"phoneNumber\": \"1\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/register"
+									},
+									"response": []
+								}
+							],
+							"id": "324a53ea-9fcb-4002-893f-ff39fe573c32"
+						}
+					],
+					"id": "fb784b44-1b7b-4645-be05-b69e86561c09"
+				},
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "Positive",
+							"item": [
+								{
+									"name": "Login Registered User",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "c512b567-0def-4c4e-86c4-8c407a4eceaa",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"// var jsonData = pm.response.json();\r",
+													"// pm.environment.set(\"accessToken\", jsonData.accessToken);\r",
+													"// // перенос пойманого токена\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "96bfcadb-fd05-4336-8548-58eab699f415",
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "2ac73483-803a-44e0-a643-312d7fab8a83",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "// {\r\n//   \"userEmail\": \"john.doe@hcf-dev.com\",\r\n//   \"password\": \"HCF-dev-007!\"\r\n// }\r\n\r\n{\r\n  \"userEmail\": \"test@biba.ua\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/login"
+									},
+									"response": []
+								},
+								{
+									"name": "Login as Admin",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "c512b567-0def-4c4e-86c4-8c407a4eceaa",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"var jsonData = pm.response.json();\r",
+													"pm.environment.set(\"accessToken\", jsonData.accessToken);\r",
+													"// перенос пойманого токена\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "96bfcadb-fd05-4336-8548-58eab699f415",
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "7eba688b-9d07-4181-9f26-2e4d14c1da8b",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"userEmail\": \"john.doe@hcf-dev.com\",\r\n  \"password\": \"HCF-dev-007!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/login"
+									},
+									"response": []
+								}
+							],
+							"id": "0da58df0-e733-4a20-ae79-f4f807b72b35"
+						},
+						{
+							"name": "Negative",
+							"item": [
+								{
+									"name": "Login with invalid email",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "050e4a15-2774-493d-8ec8-0e5a7844ae3c",
+												"exec": [
+													"pm.test(\"Status code is 401\", function () {\r",
+													"    pm.response.to.have.status(401);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Value message: email invalid\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"User not authenticated\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "47c52158-6edd-4f08-ad34-e2e86851c90b",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "08d55c61-e205-47fa-8903-9bba38bf02cc",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"userEmail\": \"tes@biba.ua\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/login"
+									},
+									"response": []
+								},
+								{
+									"name": "Login with invalid password",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "63ec312b-c12c-4447-9e25-3c8ec01deb55",
+												"exec": [
+													"pm.test(\"Status code is 401\", function () {\r",
+													"    pm.response.to.have.status(401);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Value message: email invalid\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"Incorrect login\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "96986ff3-bc20-4018-9e88-4989dd68f06e",
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "1baaeaf6-f4f0-4135-bef0-c8c01c7b446b",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"userEmail\": \"test@biba.ua\",\r\n  \"password\": \"true\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/login"
+									},
+									"response": []
+								},
+								{
+									"name": "Login without email",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "9f211d1f-568d-47b4-8787-0e1691255c28",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Value message: empty email\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"must not be blank\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "bb4b2075-4789-45a3-9b86-2f9deaeb148d",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "2434ad3e-c1aa-4ebd-b981-c673d9287ee1",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"userEmail\": \"\",\r\n  \"password\": \"Cobra123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/login"
+									},
+									"response": []
+								},
+								{
+									"name": "Login without password",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "8230c913-9060-48b6-804e-1a3c8ed35ff2",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 300ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Value message: empty email\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"must not be blank\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "55e97fae-85cc-41ea-b637-3013f86cae3b",
+												"exec": [],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "03df2250-9093-4ead-acd5-bb3b4a501504",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Transfer-Encoding",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"userEmail\": \"test@biba.ua\",\r\n  \"password\": \"\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURI}}auth/login"
+									},
+									"response": []
+								}
+							],
+							"id": "f936d6a0-d26f-4167-96f2-ec51745694e2"
+						}
+					],
+					"id": "78f0bcdb-80f0-45a1-a1e2-f751cfb07415"
+				},
+				{
+					"name": "Status",
+					"item": [
+						{
+							"name": "my status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9e49ded6-8d81-4a9d-8158-347af725502f",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"}); //проверка статус кода\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"}); // проверка скорости работы\r",
+											"\r",
+											"pm.test(\"Value roles: role user\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"ROLE_ADMIN\");\r",
+											"}); // проверка значения роли в общем и целом\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"}); //проверка, что прописан контент тайп в бэке\r",
+											"\r",
+											"pm.test(\"Status code name has string: OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"}); // проверка что статус 200 имеет стринг создано"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "45062737-bb18-4df7-b81d-d5f1083e930d",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "d2346278-348b-4106-96e0-99d526888b80",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"type": "text"
+									}
+								],
+								"url": "{{BaseURI}}users/me"
+							},
+							"response": []
+						}
+					],
+					"id": "cdbc1224-31ce-4fcf-b617-d8a30a801d12"
+				}
+			],
+			"id": "ae81ee7e-b6ad-415c-8d9d-7bc70503af9e"
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Room",
+					"item": [
+						{
+							"name": "Get  all rooms with beds",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d3c9c07e-80f5-42fb-849e-982168d49ad3",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"}); \r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "37b69eea-10c6-4c77-b7b5-bc0b236ac2da",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "e72e601c-62c3-4b34-aa1f-df14b0bec8de",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURI}}rooms"
+							},
+							"response": []
+						},
+						{
+							"name": "Create new room",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7757b685-360e-48b1-b553-75725fc89699",
+										"exec": [
+											"let roomNumber = Math.floor(10000 + Math.random() * 90000); \r",
+											"pm.globals.set(\"new_room\", `f${roomNumber}`);\r",
+											"\r",
+											"let responseData = pm.response.json();\r",
+											"pm.environment.set(\"room_id\", responseData.id);\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"}); \r",
+											"\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "cee72966-2b23-4553-a893-9c78c345859b",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "6c633f66-14ab-4584-97be-4107a765af41",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"number\": \"{{new_room}}\",\r\n  \"type\": \"xxl\",\r\n  \"price\": 50\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}rooms"
+							},
+							"response": []
+						},
+						{
+							"name": "Get room by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0071b338-312c-45af-8167-31de9d993fa2",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"}); "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "15951815-9fd2-4955-a69f-6e19c99e9b70",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "0ebbfdc4-1e5b-4a89-bb17-8236c47005b3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURI}}rooms/{{room_id}}"
+							},
+							"response": []
+						},
+						{
+							"name": "get rooms total price",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "997c5fca-b81c-484c-af9d-f1b74246270a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"}); "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "c1dd4c87-bc47-4311-9699-dd6ff46d0a52",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "84d4f5f1-9420-4e12-9030-1afeb8b6df9d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURI}}rooms/{{room_id}}/total_price"
+							},
+							"response": []
+						}
+					],
+					"id": "df996600-4e8e-4e82-9283-ee47468ea6c4"
+				},
+				{
+					"name": "Bed",
+					"item": [
+						{
+							"name": "get all beds",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "be2b2939-7834-4c0b-b455-61264d7c8907",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"}); "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "89ddb584-0181-4b47-9275-fc8630cc1192",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "aee0b9fe-ee14-4ef0-9e44-00b500549302",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}beds"
+							},
+							"response": []
+						},
+						{
+							"name": "%% create new bed",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c8ce9a5-7f43-4aaf-8149-93aa9f07bc63",
+										"exec": [
+											"let responseData = pm.response.json();\r",
+											"pm.environment.set(\"bed_id\", responseData.id);\r",
+											"\r",
+											"\r",
+											"let shortId = Math.floor(100 + Math.random() * 900);\r",
+											"pm.globals.set(\"bed_name\", `bed${shortId}`);\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"}); "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "36442348-fe2e-489f-b35f-28dce913338e",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "6c1563d1-98ca-4b37-ba2c-2ad88daaa2b3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"number\": \"{{bed_name}}\",\r\n  \"type\": \"solo\",\r\n  \"price\": 20,\r\n  \"roomId\": {{room_id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}beds"
+							},
+							"response": []
+						},
+						{
+							"name": "get bed by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "71c9fe96-53a6-477d-8d24-47880fcc636c",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"}); "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "ac09b41a-7d90-4457-bfe3-d15a6198d05f",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "fb5f656e-21a4-433b-ba8e-a5316a79c7c9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURI}}beds/{{bed_id}}"
+							},
+							"response": []
+						}
+					],
+					"id": "0f18b3d5-a2d1-4d5b-a129-fcc9bc3e76ce"
+				},
+				{
+					"name": "Cart",
+					"item": [
+						{
+							"name": "%% add bed to cart",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e64423ce-f933-4df9-9bcf-48d2e03162a5",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "68178d8c-6699-43c0-b7c8-71db094cf8de",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "5781b9af-e118-4489-9374-31ccceea37ee",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"entryDate\": \"2025-02-10\",\r\n  \"departureDate\": \"2025-02-17\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}cart/bed/{{bed_id}}"
+							},
+							"response": []
+						},
+						{
+							"name": "get cart",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "885e1b98-d2a0-42d9-a655-fec7e0a8db04",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"}); "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "8e08d85c-4b2b-41f2-ba95-f0530ba367d0",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "8e4584cd-a33e-4c8e-9323-727bd93114b4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURI}}cart"
+							},
+							"response": []
+						},
+						{
+							"name": "get total cart price",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3761ac90-765f-4ec3-8c74-8a515693461b",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"}); "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "b978630e-f631-42d2-be5e-063e7047237f",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "9a01d58e-bcb4-4345-aa0e-d318b40a309f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURI}}cart/total_price"
+							},
+							"response": []
+						}
+					],
+					"id": "000d39fd-888e-47be-be58-514a9c9b2c93"
+				},
+				{
+					"name": "Delete",
+					"item": [
+						{
+							"name": "%% add bed to cart Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e64423ce-f933-4df9-9bcf-48d2e03162a5",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "68178d8c-6699-43c0-b7c8-71db094cf8de",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "44b2e50d-2b1b-4006-b05a-f89478720ee5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"entryDate\": \"2025-02-10\",\r\n  \"departureDate\": \"2025-02-17\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}cart/bed/{{bed_id}}"
+							},
+							"response": []
+						},
+						{
+							"name": "%%%clear cart by id",
+							"id": "d43921bf-bff3-4321-9842-241f7a9badb7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "{{BaseURI}}cart/remove_bed/{{bed_id}}"
+							},
+							"response": []
+						},
+						{
+							"name": "%% create new bed Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c8ce9a5-7f43-4aaf-8149-93aa9f07bc63",
+										"exec": [
+											"let responseData = pm.response.json();\r",
+											"pm.environment.set(\"bed_id\", responseData.id);\r",
+											"\r",
+											"\r",
+											"let shortId = Math.floor(100 + Math.random() * 900);\r",
+											"pm.globals.set(\"bed_name\", `bed${shortId}`);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "36442348-fe2e-489f-b35f-28dce913338e",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "52b1130a-a939-45fd-87aa-acdf3bd2d029",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"number\": \"{{bed_name}}\",\r\n  \"type\": \"solo\",\r\n  \"price\": 20,\r\n  \"roomId\": {{room_id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}beds"
+							},
+							"response": []
+						},
+						{
+							"name": "delete bed by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "858e660c-4242-4dc0-9445-f3eace73d786",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "84abf6a5-52e5-488c-8dd9-bc318f75ff79",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "cec7b5b1-188f-4db8-a221-27f2a3df87cb",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "{{BaseURI}}beds/{{bed_id}}"
+							},
+							"response": []
+						},
+						{
+							"name": "delete room by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "05628035-dc7e-46fc-8773-1d8925872925",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "283b757b-932c-4c04-ac02-bea900ac8375",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "7a413f89-b5b8-4880-971d-c98124520d57",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "{{BaseURI}}rooms/{{room_id}}"
+							},
+							"response": []
+						},
+						{
+							"name": "clear cart",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0caa7db6-d87d-4651-aa89-13f710100774",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "1f66bb53-432e-4d22-872e-692eefedef47",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "92589bcf-39e0-43f7-a3cc-6f14b524fdae",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}cart/clear"
+							},
+							"response": []
+						}
+					],
+					"id": "c6e9a3a8-df21-428e-b7c9-45a7e7d651ed"
+				}
+			],
+			"id": "9ec785ac-476c-401f-a4a7-4d623358fd26"
+		}
+	]
+}
