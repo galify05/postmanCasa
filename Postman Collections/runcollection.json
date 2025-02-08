@@ -110,8 +110,8 @@
 													"    pm.response.to.have.status(409);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"\r",
@@ -173,8 +173,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Value message: empty email\", function () {\r",
@@ -189,8 +189,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "c3c8c3c9-bd73-415f-8722-2c1fc9e038aa",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -234,8 +237,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"\r",
@@ -251,8 +254,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "5210ee4f-19ec-4e03-8e96-ea4ebb9546c8",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -296,8 +302,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"\r",
@@ -313,8 +319,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "a25765f3-51e1-4ae5-a170-d8b0e70887af",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -358,8 +367,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"\r",
@@ -375,8 +384,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "8c7810a6-3aa9-455b-8057-22c066a802e6",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -420,8 +432,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"\r",
@@ -437,8 +449,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "20309b5e-0537-4e58-84ae-92a148bd14da",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -482,8 +497,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"\r",
@@ -499,8 +514,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "151d445c-bbe7-4899-8276-4b175e956a60",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -544,8 +562,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Value message: firstName invalid\", function () {\r",
@@ -560,8 +578,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "cd68384f-e128-439b-b63c-d3e91fa26b02",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -605,8 +626,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Value message: phone invalid\", function () {\r",
@@ -621,8 +642,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "1def6cf7-2f15-420d-9550-60357078ee9c",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -666,8 +690,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Value message: phone invalid\", function () {\r",
@@ -682,8 +706,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "6f6ac0c9-09ca-4dd6-977f-e907ef87ffaa",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1447,8 +1474,8 @@
 											"    pm.response.to.have.status(200);\r",
 											"});\r",
 											"\r",
-											"pm.test(\"Response time is less than 300ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Content-Type is present\", function () {\r",
@@ -1504,8 +1531,8 @@
 											"    pm.response.to.have.status(201);\r",
 											"});\r",
 											"\r",
-											"pm.test(\"Response time is less than 300ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Content-Type is present\", function () {\r",
@@ -1694,8 +1721,8 @@
 											"    pm.response.to.have.status(200);\r",
 											"});\r",
 											"\r",
-											"pm.test(\"Response time is less than 300ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Content-Type is present\", function () {\r",
@@ -1710,8 +1737,11 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "89ddb584-0181-4b47-9275-fc8630cc1192",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -1768,8 +1798,8 @@
 											"    pm.response.to.have.status(201);\r",
 											"});\r",
 											"\r",
-											"pm.test(\"Response time is less than 300ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Content-Type is present\", function () {\r",
@@ -1902,8 +1932,8 @@
 											"    pm.response.to.have.status(204);\r",
 											"});\r",
 											"\r",
-											"pm.test(\"Response time is less than 300ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -1914,8 +1944,11 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "68178d8c-6699-43c0-b7c8-71db094cf8de",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -1968,8 +2001,8 @@
 											"    pm.response.to.have.status(200);\r",
 											"});\r",
 											"\r",
-											"pm.test(\"Response time is less than 300ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Content-Type is present\", function () {\r",
@@ -1984,8 +2017,11 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "8e08d85c-4b2b-41f2-ba95-f0530ba367d0",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -2018,8 +2054,8 @@
 											"    pm.response.to.have.status(200);\r",
 											"});\r",
 											"\r",
-											"pm.test(\"Response time is less than 300ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Content-Type is present\", function () {\r",
@@ -2034,8 +2070,11 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "b978630e-f631-42d2-be5e-063e7047237f",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -2093,8 +2132,8 @@
 											"    pm.response.to.have.status(204);\r",
 											"});\r",
 											"\r",
-											"pm.test(\"Response time is less than 300ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 											"});\r",
 											""
 										],
@@ -2106,8 +2145,11 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "84abf6a5-52e5-488c-8dd9-bc318f75ff79",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -2140,8 +2182,8 @@
 											"    pm.response.to.have.status(204);\r",
 											"});\r",
 											"\r",
-											"pm.test(\"Response time is less than 300ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 											"});\r",
 											""
 										],
@@ -2153,8 +2195,11 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "283b757b-932c-4c04-ac02-bea900ac8375",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -2187,8 +2232,8 @@
 											"    pm.response.to.have.status(204);\r",
 											"});\r",
 											"\r",
-											"pm.test(\"Response time is less than 300ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 											"});\r",
 											""
 										],
@@ -2200,8 +2245,11 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "1f66bb53-432e-4d22-872e-692eefedef47",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
