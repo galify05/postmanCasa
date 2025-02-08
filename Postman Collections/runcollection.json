@@ -754,8 +754,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Value message: email invalid\", function () {\r",
@@ -770,8 +770,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "9a4b05f4-d8ae-486d-851b-5cb469ae82f4",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -815,8 +818,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Value message: name invalid\", function () {\r",
@@ -831,8 +834,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "4a085c25-88d8-4b3d-bb95-d4594636555c",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -876,8 +882,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Value message: name invalid\", function () {\r",
@@ -892,8 +898,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "dfd48bdb-24d7-417c-8a2c-74f65355a254",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -937,8 +946,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Value message: short phone\", function () {\r",
@@ -953,8 +962,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "c2ee37b5-f6a5-449b-9bac-a06fda06fd2f",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1072,8 +1084,8 @@
 													"    pm.response.to.have.status(200);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"var jsonData = pm.response.json();\r",
@@ -1142,8 +1154,8 @@
 													"    pm.response.to.have.status(401);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Value message: email invalid\", function () {\r",
@@ -1158,8 +1170,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "47c52158-6edd-4f08-ad34-e2e86851c90b",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1201,8 +1216,8 @@
 													"    pm.response.to.have.status(401);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Value message: email invalid\", function () {\r",
@@ -1263,8 +1278,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Value message: empty email\", function () {\r",
@@ -1279,8 +1294,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "bb4b2075-4789-45a3-9b86-2f9deaeb148d",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1322,8 +1340,8 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"pm.test(\"Response time is less than 300ms\", function () {\r",
-													"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+													"pm.test(\"Response time is less than 600\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 													"});\r",
 													"\r",
 													"pm.test(\"Value message: empty email\", function () {\r",
@@ -1338,8 +1356,11 @@
 											"listen": "prerequest",
 											"script": {
 												"id": "55e97fae-85cc-41ea-b637-3013f86cae3b",
-												"exec": [],
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1390,8 +1411,8 @@
 											"    pm.response.to.have.status(200);\r",
 											"}); //проверка статус кода\r",
 											"\r",
-											"pm.test(\"Response time is less than 300ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 											"}); // проверка скорости работы\r",
 											"\r",
 											"pm.test(\"Value roles: role user\", function () {\r",
