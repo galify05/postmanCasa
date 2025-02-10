@@ -1871,7 +1871,86 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"number\": \"{{bed_name}}\",\r\n  \"type\": \"\",\r\n  \"price\": 20,\r\n  \"roomId\": {{room_id}}\r\n}",
+									"raw": "{\r\n  \"number\": \"{{bed_name}}\",\r\n  \"type\": \"solo\",\r\n  \"price\": 20,\r\n  \"roomId\": {{room_id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}beds"
+							},
+							"response": []
+						},
+						{
+							"name": "%% create new bed Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c8ce9a5-7f43-4aaf-8149-93aa9f07bc63",
+										"exec": [
+											"\r",
+											"let responseData = pm.response.json();\r",
+											"pm.environment.set(\"bed_id\", responseData.id);\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"}); "
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "36442348-fe2e-489f-b35f-28dce913338e",
+										"exec": [
+											"\r",
+											"let shortId = Math.floor(100 + Math.random() * 900);\r",
+											"pm.globals.set(\"bed_name\", `bed${shortId}`);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "7b63c905-c671-477c-abd9-525e6c6efaec",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"number\": \"111\",\r\n  \"type\": \"solo\",\r\n  \"price\": 20,\r\n  \"roomId\": 97\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
