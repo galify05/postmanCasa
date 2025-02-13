@@ -1871,7 +1871,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"number\": \"{{bed_name}}\",\r\n  \"type\": \"solo\",\r\n  \"price\": 20,\r\n  \"roomId\": {{room_id}}\r\n}\r\n\r\n// {\r\n//   \"number\": \"{{bed_name}}\",\r\n//   \"type\": \"xx\",\r\n//   \"price\": 20,\r\n//   \"roomId\": 97\r\n// }",
+									"raw": "// {\r\n//   \"number\": \"{{bed_name}}\",\r\n//   \"type\": \"solo\",\r\n//   \"price\": 20,\r\n//   \"roomId\": {{room_id}}\r\n// }\r\n\r\n{\r\n  \"number\": \"{{bed_name}}\",\r\n  \"type\": \"xx\",\r\n  \"price\": 20,\r\n  \"roomId\": 138,\r\n  \"imageUrls\": [],\r\n\"description\": \"dasdsadas\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
