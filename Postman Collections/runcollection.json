@@ -2311,6 +2311,56 @@
 							"response": []
 						},
 						{
+							"name": "delete room by id Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "05628035-dc7e-46fc-8773-1d8925872925",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "283b757b-932c-4c04-ac02-bea900ac8375",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "86a646b6-aa2b-475c-9d91-9565d986edb7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "{{BaseURI}}rooms/138"
+							},
+							"response": []
+						},
+						{
 							"name": "clear cart",
 							"event": [
 								{
