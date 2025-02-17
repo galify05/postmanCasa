@@ -2107,14 +2107,14 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"entryDate\": \"2025-02-17\",\r\n  \"departureDate\": \"99999-03-10\"\r\n}",
+									"raw": "{\r\n  \"entryDate\": \"2025-02-17\",\r\n  \"departureDate\": \"9999-03-10\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": "{{BaseURI}}cart/bed/279"
+								"url": "{{BaseURI}}cart/bed/300"
 							},
 							"response": []
 						},
