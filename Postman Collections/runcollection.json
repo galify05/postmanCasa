@@ -1942,9 +1942,35 @@
 								"disableBodyPruning": true
 							},
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
 								"method": "GET",
 								"header": [],
-								"url": "{{BaseURI}}beds/avai"
+								"url": {
+									"raw": "{{BaseURI}}beds/available-beds/rooms/2?entryDate=2025-03-20&departrueDate=2025-03-25",
+									"host": [
+										"{{BaseURI}}beds"
+									],
+									"path": [
+										"available-beds",
+										"rooms",
+										"2"
+									],
+									"query": [
+										{
+											"key": "entryDate",
+											"value": "2025-03-20"
+										},
+										{
+											"key": "departrueDate",
+											"value": "2025-03-25"
+										}
+									]
+								}
 							},
 							"response": []
 						}
