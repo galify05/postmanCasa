@@ -2068,14 +2068,14 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"entryDate\": \"2025-03-12\",\r\n  \"departureDate\": \"2025-03-10\"\r\n}",
+									"raw": "{\r\n  \"entryDate\": \"2025-03-13\",\r\n  \"departureDate\": \"9000-03-13\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": "{{BaseURI}}cart/bed/279"
+								"url": "{{BaseURI}}cart/bed/300"
 							},
 							"response": []
 						},
