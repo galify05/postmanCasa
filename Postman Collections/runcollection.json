@@ -2374,6 +2374,255 @@
 				}
 			],
 			"id": "9ec785ac-476c-401f-a4a7-4d623358fd26"
+		},
+		{
+			"name": "Image",
+			"item": [
+				{
+					"name": "Get images bed by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "96d03d58-a125-4ae8-9ada-d2b879f4e929",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 600\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"}); "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fb6ee88f-e193-47a2-980c-0de24e7e822e",
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "e78dc7a9-ec6a-44bc-89f6-6d2b6fa2cd78",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURI}}images/bed/341"
+					},
+					"response": []
+				},
+				{
+					"name": "Get images room by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "795c72fe-5492-4e2e-9726-5479abd8bc85",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 600\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"}); "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4898ca68-2b67-4df7-aa73-827dd38f44af",
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "0c181ae4-b2f9-4483-83c4-576155f97a33",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURI}}images/room/138"
+					},
+					"response": []
+				},
+				{
+					"name": "Get image by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c5b49f79-6c58-4b4e-bba0-c78d6ebce7a6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 600\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"}); "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "18241d2e-2092-4d31-b1e3-0dfd7977e275",
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "44d8076c-3557-4845-9446-f3814fd1d76e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURI}}images/presigned/24"
+					},
+					"response": []
+				}
+			],
+			"id": "24a4a1da-b1da-424f-bbd4-4c4b02227d0e"
+		},
+		{
+			"name": "Get available-beds by roomId Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636f64a4-3417-478b-978a-62f673fbbb82",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 600\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"}); "
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9525c97a-2a87-416d-b5d0-0c65800b898f",
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "26d8d1d6-bb98-4aaf-8bb8-c3e834ff6433",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{accessToken}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hostel-casa-flamingo-f95tn.ondigitalocean.app/api/beds/available-beds/rooms/140?entryDate=2025-02-20&departureDate=2025-02-25",
+					"protocol": "https",
+					"host": [
+						"hostel-casa-flamingo-f95tn",
+						"ondigitalocean",
+						"app"
+					],
+					"path": [
+						"api",
+						"beds",
+						"available-beds",
+						"rooms",
+						"140"
+					],
+					"query": [
+						{
+							"key": "entryDate",
+							"value": "2025-02-20"
+						},
+						{
+							"key": "departureDate",
+							"value": "2025-02-25"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
