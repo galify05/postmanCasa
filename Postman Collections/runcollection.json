@@ -1934,45 +1934,6 @@
 								"url": "{{BaseURI}}beds/{{bed_id}}"
 							},
 							"response": []
-						},
-						{
-							"name": "New Request",
-							"id": "8ae1febb-9b1d-4a4f-81e1-d5e78389ac15",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{accessToken}}"
-									}
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{BaseURI}}beds/available-beds/rooms/2?entryDate=2025-03-20&departrueDate=2025-03-25",
-									"host": [
-										"{{BaseURI}}beds"
-									],
-									"path": [
-										"available-beds",
-										"rooms",
-										"2"
-									],
-									"query": [
-										{
-											"key": "entryDate",
-											"value": "2025-03-20"
-										},
-										{
-											"key": "departrueDate",
-											"value": "2025-03-25"
-										}
-									]
-								}
-							},
-							"response": []
 						}
 					],
 					"id": "0f18b3d5-a2d1-4d5b-a129-fcc9bc3e76ce"
