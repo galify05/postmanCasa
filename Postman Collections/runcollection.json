@@ -2095,75 +2095,6 @@
 							"response": []
 						},
 						{
-							"name": "%% add bed to cart Copy",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "e64423ce-f933-4df9-9bcf-48d2e03162a5",
-										"exec": [
-											"pm.test(\"Status code is 204\", function () {\r",
-											"    pm.response.to.have.status(204);\r",
-											"});\r",
-											"\r",
-											"pm.test(\"Response time is less than 600\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "68178d8c-6699-43c0-b7c8-71db094cf8de",
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "9ee096be-184e-4863-926f-9f635a07f51a",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{accessToken}}"
-									}
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "Authorization",
-										"value": "{{accessToken}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"entryDate\": \"2025-03-20\",\r\n  \"departureDate\": \"2025-03-25\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURI}}cart/bed/371"
-							},
-							"response": []
-						},
-						{
 							"name": "get cart",
 							"event": [
 								{
@@ -2442,6 +2373,33 @@
 					"item": [
 						{
 							"name": "%%%clear cart by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "535fbc4b-f62b-4714-9337-e40d2e8be446",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "25b32c6c-4956-45a3-b6da-cba350ff0211",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "d43921bf-bff3-4321-9842-241f7a9badb7",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
