@@ -2418,6 +2418,55 @@
 							"response": []
 						},
 						{
+							"name": "%%%clear cart by id Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "535fbc4b-f62b-4714-9337-e40d2e8be446",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 600\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "25b32c6c-4956-45a3-b6da-cba350ff0211",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "432bf031-a381-40d7-9466-bde6163075d0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "{{BaseURI}}cart/remove_bed/302"
+							},
+							"response": []
+						},
+						{
 							"name": "delete bed by id",
 							"event": [
 								{
@@ -2514,56 +2563,6 @@
 								"method": "DELETE",
 								"header": [],
 								"url": "{{BaseURI}}rooms/{{room_id}}"
-							},
-							"response": []
-						},
-						{
-							"name": "delete room by id Copy",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "05628035-dc7e-46fc-8773-1d8925872925",
-										"exec": [
-											"pm.test(\"Status code is 204\", function () {\r",
-											"    pm.response.to.have.status(204);\r",
-											"});\r",
-											"\r",
-											"pm.test(\"Response time is less than 600\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
-											"});\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "283b757b-932c-4c04-ac02-bea900ac8375",
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "6712af78-bce2-426c-8bec-f3d3e8de5f8b",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{accessToken}}"
-									}
-								},
-								"method": "DELETE",
-								"header": [],
-								"url": "{{BaseURI}}rooms/138"
 							},
 							"response": []
 						},
