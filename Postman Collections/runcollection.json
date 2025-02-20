@@ -2237,8 +2237,11 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "fb6ee88f-e193-47a2-980c-0de24e7e822e",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -2255,7 +2258,7 @@
 								},
 								"method": "GET",
 								"header": [],
-								"url": "{{BaseURI}}images/bed/341"
+								"url": "{{BaseURI}}images/bed/{{bed_id}}"
 							},
 							"response": []
 						},
