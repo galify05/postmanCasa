@@ -1783,7 +1783,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://hostel-casa-flamingo-f95tn.ondigitalocean.app/api/beds/available-beds/rooms/138?entryDate=2025-02-19&departureDate=9999-02-25",
+									"raw": "https://hostel-casa-flamingo-f95tn.ondigitalocean.app/api/beds/available-beds/rooms/{{room_id}}?entryDate=2026-02-19&departureDate=9999-02-25",
 									"protocol": "https",
 									"host": [
 										"hostel-casa-flamingo-f95tn",
@@ -1795,12 +1795,12 @@
 										"beds",
 										"available-beds",
 										"rooms",
-										"138"
+										"{{room_id}}"
 									],
 									"query": [
 										{
 											"key": "entryDate",
-											"value": "2025-02-19"
+											"value": "2026-02-19"
 										},
 										{
 											"key": "departureDate",
@@ -2287,8 +2287,11 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "4898ca68-2b67-4df7-aa73-827dd38f44af",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -2305,7 +2308,7 @@
 								},
 								"method": "GET",
 								"header": [],
-								"url": "{{BaseURI}}images/room/138"
+								"url": "{{BaseURI}}images/room/{{room_id}}"
 							},
 							"response": []
 						},
